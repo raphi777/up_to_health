@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "769746649480",
+    "project_id": "uptohealth-15787",
+    "storage_bucket": "uptohealth-15787.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769746649480:android:d76e42fb2c34062a9a7a3d",
+        "android_client_info": {
+          "package_name": "com.uth.up_to_health"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "769746649480-qnntfj0ncp5dtnobqq2mukscfrncr02l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbnyuYUjSIEOhrp6hDAkdXkVdtUcZ-acY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "769746649480-qnntfj0ncp5dtnobqq2mukscfrncr02l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "769746649480-g48o1li21qese8mpatu48j2hcrptjlue.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.uth.uptohealth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
