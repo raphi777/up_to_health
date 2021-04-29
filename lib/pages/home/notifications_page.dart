@@ -5,9 +5,17 @@ class NotificationsPage extends StatefulWidget {
   _NotificationsPageState createState() => _NotificationsPageState();
 }
 
-class _NotificationsPageState extends State<NotificationsPage> {
+class _NotificationsPageState extends State<NotificationsPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    super.build(context);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Benachrichtigungen'),
+      ),
+    );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

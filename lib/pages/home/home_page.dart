@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:up_to_health/pages/home/compass_page.dart';
 import 'package:up_to_health/pages/home/notifications_page.dart';
+import 'package:up_to_health/pages/home/principals_categories_page.dart';
 import 'package:up_to_health/pages/home/principals_page.dart';
 import 'package:up_to_health/pages/home/profile_page.dart';
 
@@ -30,9 +31,8 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: PageView(
           controller: _pageController,
-          //children: _screens,
           children: [
-            PrincipalsPage(),
+            PrincipalsCategoriesPage(),
             NotificationsPage(),
             CompassPage(),
             ProfilePage(),
@@ -41,14 +41,14 @@ class _HomePageState extends State<HomePage> {
           physics: NeverScrollableScrollPhysics(),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: const Color(0x63C1FF),
+          selectedItemColor: Colors.blue,
           onTap: _onItemTapped,
           currentIndex: _selectedIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home)),
-            BottomNavigationBarItem(icon: Icon(Icons.notifications)),
-            BottomNavigationBarItem(icon: Icon(Icons.navigation)),
-            BottomNavigationBarItem(icon: Icon(Icons.person)),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Principals"),
+            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Benachrichtigungen"),
+            BottomNavigationBarItem(icon: Icon(Icons.navigation), label: "Compass"),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
           ],
         ),
       ),

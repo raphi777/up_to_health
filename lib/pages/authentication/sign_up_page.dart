@@ -2,26 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:passwordfield/passwordfield.dart';
 import 'package:up_to_health/authentication/authentication_service.dart';
+import 'package:up_to_health/authentication/authentication_widget.dart';
 import 'package:up_to_health/pages/home/home_page.dart';
 import 'package:up_to_health/pages/registration/splash_screen_page.dart';
 
-class SignInPage extends StatelessWidget {
+
+class SignUpPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  Future<void> _signIn(BuildContext context, TextEditingController emailController, TextEditingController passwordController) async {
-    final signInResult = await context.read<AuthenticationService>().signIn(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim()
-    );
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(signInResult.toString())));
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign In'),
+        title: const Text('Register'),
       ),
       body: Column(
         children: [
@@ -39,18 +33,30 @@ class SignInPage extends StatelessWidget {
             child: PasswordField(
               controller: passwordController,
               hintText: "Password",
+              pattern: r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$',
+              errorMessage:
+              "Password must have a minimum of eight characters, at least one letter\nand one number!",
             ),
           ),
           ElevatedButton(
             onPressed: () {
-              _signIn(context, emailController, passwordController);
+              if (emailController.text.isNotEmpty &&
+                  passwordController.text.isNotEmpty) {
+                context.read<AuthenticationService>().signUp(
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim());
+                //Navigator.pop(context);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AuthenticationWidget()));
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Please enter E-Mail and Password.")));
+              }
             },
-            child: Text("Sign in"),
+            child: Text("Register"),
           ),
-          ElevatedButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())),
-            child: Text("Go to Register"),
-          )
         ],
       ),
     );
