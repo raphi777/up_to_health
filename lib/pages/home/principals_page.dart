@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/antiaging.dart';
 import 'package:up_to_health/data/principals.dart';
+import 'package:up_to_health/data/todos.dart';
 import 'package:up_to_health/data/untersuchungen.dart';
 import 'package:up_to_health/data/labortests.dart';
+import 'package:up_to_health/data/wellbeing.dart';
 
 class PrincipalsPage extends StatefulWidget {
   final category;
@@ -13,8 +16,6 @@ class PrincipalsPage extends StatefulWidget {
 class _PrincipalsPageState extends State<PrincipalsPage>
     with AutomaticKeepAliveClientMixin {
 
-  //var _principalsList = untersuchungen.toList();
-
   List<Principal> _getPrincipalsList(String category) {
     switch (category) {
       case 'untersuchungen': {
@@ -24,6 +25,21 @@ class _PrincipalsPageState extends State<PrincipalsPage>
 
       case 'labortests': {
         return labortests.toList();
+      }
+      break;
+
+      case 'todos': {
+        return todos.toList();
+      }
+      break;
+
+      case 'antiaging': {
+        return antiaging.toList();
+      }
+      break;
+
+      case 'wellbeing': {
+        return wellbeing.toList();
       }
       break;
     }

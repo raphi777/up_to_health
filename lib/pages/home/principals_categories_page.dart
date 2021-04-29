@@ -9,14 +9,6 @@ class PrincipalsCategoriesPage extends StatefulWidget {
 
 class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
     with AutomaticKeepAliveClientMixin {
-  List<String> _principalsList = [
-    "Untersuchungen",
-    "Labortests",
-    "To-Do's für dich",
-    "Anti-Aging",
-    "Wellbeing",
-  ];
-
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -82,7 +74,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('labortests'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('todos'))),
             child: Column(
               children: [
                 Container(
@@ -106,7 +98,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('labortests'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('antiaging'))),
             child: Column(
               children: [
                 Container(
@@ -130,7 +122,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('labortests'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('wellbeing'))),
             child: Column(
               children: [
                 Container(
