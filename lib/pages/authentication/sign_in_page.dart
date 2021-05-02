@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:passwordfield/passwordfield.dart';
 import 'package:up_to_health/authentication/authentication_service.dart';
 import 'package:up_to_health/pages/home/home_page.dart';
+import 'package:up_to_health/pages/registration/assessment_00_page.dart';
 import 'package:up_to_health/pages/registration/splash_screen_page.dart';
 
 class SignInPage extends StatelessWidget {
@@ -48,7 +49,7 @@ class SignInPage extends StatelessWidget {
             child: Text("Sign in"),
           ),
           ElevatedButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage())),
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SplashScreenPage())),
             child: Text("Go to Register"),
           )
         ],
