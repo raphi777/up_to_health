@@ -16,5 +16,5 @@ Du solltest nur mit Intervalltraining beginnen, wenn du gesund bist und keine ge
       subCategory: 'UV-Schutz',
       algorithm: 'Für alle',
       description:
-          'UV-Strahlung kann nicht nur langfristig das Risiko von Hautkrebs erhöhen, sie beschleunigt zudem Alterungsprozesse in der Haut. Wer sich also möglichst lange an gesunder und schöner glatter Haut erfreuen möchte, sollte schon frühzeitig damit beginnen, die Auswirkungen der Hautalterung zu reduzieren. Bedenke dabei, dass die UVA-Strahlen auch durch Wolken und Glasscheiben hindurchdringen. Sie belasten die Haut also das ganze Jahr hindurch, so dass täglicher Sonnenschutz empfehlenswert ist.')
+          '''UV-Strahlung kann nicht nur langfristig das Risiko von Hautkrebs erhöhen, sie beschleunigt zudem Alterungsprozesse in der Haut. Wer sich also möglichst lange an gesunder und schöner glatter Haut erfreuen möchte, sollte schon frühzeitig damit beginnen, die Auswirkungen der Hautalterung zu reduzieren. Bedenke dabei, dass die UVA-Strahlen auch durch Wolken und Glasscheiben hindurchdringen. Sie belasten die Haut also das ganze Jahr hindurch, so dass täglicher Sonnenschutz empfehlenswert ist.''')
 ];

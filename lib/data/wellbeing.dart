@@ -6,7 +6,7 @@ final wellbeing = [
       subCategory: 'Entspannung',
       algorithm: 'Wenn angegeben, dass überdurchschnittlich gestresst',
       description:
-          'Du bist momentan sehr gestresst und fühlst dich nicht ganz ausgeglichen? Unser Tipp: Achte auf einen konsequenten Schlafrhythmus und wende regelmäßig ein Entspannungsverfahren an. Yoga und Meditation sind hierbei nur Beispiele. Du wirst verwundert sein wie viele hilfreiche Anleitungen du im Internet dazu findest. Probiere es einfach mal aus!'),
+          '''Du bist momentan sehr gestresst und fühlst dich nicht ganz ausgeglichen? Unser Tipp: Achte auf einen konsequenten Schlafrhythmus und wende regelmäßig ein Entspannungsverfahren an. Yoga und Meditation sind hierbei nur Beispiele. Du wirst verwundert sein wie viele hilfreiche Anleitungen du im Internet dazu findest. Probiere es einfach mal aus!'''),
   Principal(
       id: 'wellbeing01',
       subCategory: 'Schlafhygiene',
