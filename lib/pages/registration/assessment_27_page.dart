@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
 import 'package:up_to_health/widgets/button_continue.dart';
@@ -6,6 +7,9 @@ import 'package:up_to_health/widgets/month_picker_custom.dart';
 import 'assessment_28_page.dart';
 
 class Assessment27Page extends StatefulWidget {
+  final UthUser uthUser;
+
+  Assessment27Page(this.uthUser);
   @override
   _Assessment27PageState createState() => _Assessment27PageState();
 }

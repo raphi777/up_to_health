@@ -11,5 +11,6 @@ final labortests = [
       id: 'labortests01',
       subCategory: 'Blutuntersuchung',
       algorithm: 'Für alle, 1x pro Jahr',
-      description: '''Eine Blutuntersuchung mittels eines Blutbilds ist immer nur eine Momentaufnahme, weshalb sie regelmäßig wiederholt werden muss. Sie bietet eine gute Grundlage, um deine Gesundheit zum jetzigen Zeitpunkt wirksam erfassen zu können. Du solltest daher idealerweise 1x pro Jahr eine Blutuntersuchung veranlassen. Eine Ausnahme bei der Häufigkeit ist natürlich, wenn du an Vorerkrankungen leidest oder in Verdachtsfällen.''')
+      description:
+          '''Eine Blutuntersuchung mittels eines Blutbilds ist immer nur eine Momentaufnahme, weshalb sie regelmäßig wiederholt werden muss. Sie bietet eine gute Grundlage, um deine Gesundheit zum jetzigen Zeitpunkt wirksam erfassen zu können. Du solltest daher idealerweise 1x pro Jahr eine Blutuntersuchung veranlassen. Eine Ausnahme bei der Häufigkeit ist natürlich, wenn du an Vorerkrankungen leidest oder in Verdachtsfällen.''')
 ];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/button_continue.dart';
 
@@ -32,7 +33,7 @@ class Assessment00Page extends StatelessWidget {
               ),
             ),
           ),
-          ButtonContinue(Assessment01Page()),
+          ButtonContinue(Assessment01Page(new UthUser())),
         ],
       ),
     );

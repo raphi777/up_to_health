@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
-import 'package:up_to_health/widgets/button_continue.dart';
 import 'assessment_17_page.dart';
 
 class Assessment16Page extends StatefulWidget {
+  final UthUser uthUser;
+
+  Assessment16Page(this.uthUser);
   @override
   _Assessment16PageState createState() => _Assessment16PageState();
 }
@@ -13,8 +16,28 @@ class _Assessment16PageState extends State<Assessment16Page> {
   int lastIndex;
   List<bool> _selections = List.generate(5, (_) => false);
 
+  String _getSelection(int index) {
+    if (index == 0) {
+      return "Überglücklich";
+    }
+    if (index == 1) {
+      return "Nicht perfekt aber Glücksmomente";
+    }
+    if (index == 2) {
+      return "Keine Gedanken gemacht, denke passt";
+    }
+    if (index == 3) {
+      return "Selbstzweifel";
+    }
+    if (index == 4) {
+      return "Unzufrieden";
+    }
+    return "";
+  }
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBarDefault(),
       extendBodyBehindAppBar: true,
@@ -61,11 +84,44 @@ class _Assessment16PageState extends State<Assessment16Page> {
                       _selections[buttonIndex] = false;
                     }
                   }
+                  lastIndex = index;
                 });
               },
             ),
           ),
-          ButtonContinue(Assessment17Page()),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (lastIndex != null) {
+                      widget.uthUser.ass16Physicalcondition = _getSelection(lastIndex);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Assessment17Page(widget.uthUser)));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Bitte treffen Sie eine Auswahl.")));
+                    }
+                  },
+                  child: Text('Weiter'),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    minimumSize:
+                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

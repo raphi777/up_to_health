@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AssessmentInputField extends StatelessWidget {
-  AssessmentInputField(this.label);
+  AssessmentInputField(this.label, this.controller);
   final String label;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -16,6 +17,7 @@ class AssessmentInputField extends StatelessWidget {
           ),
           labelText: label,
         ),
+        controller: controller,
       ),
     );
   }
