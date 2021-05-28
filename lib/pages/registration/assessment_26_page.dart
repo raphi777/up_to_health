@@ -9,12 +9,12 @@ class Assessment26Page extends StatefulWidget {
   final UthUser uthUser;
 
   Assessment26Page(this.uthUser);
+
   @override
   _Assessment26PageState createState() => _Assessment26PageState();
 }
 
 class _Assessment26PageState extends State<Assessment26Page> {
-  final TextEditingController dayController = TextEditingController();
   final TextEditingController monthController = TextEditingController();
   final TextEditingController yearController = TextEditingController();
   int lastIndex;
@@ -23,20 +23,21 @@ class _Assessment26PageState extends State<Assessment26Page> {
   bool _dateIsValid(context, int year, int month) {
     // check if date is valid
     if (year > DateTime.now().year) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
       return false;
     }
     if (month > 12) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
       return false;
     }
     if (year == DateTime.now().year && month > DateTime.now().month) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Angabe kann nicht in der Zukunft liegen.")));
       return false;
     }
+    return true;
   }
 
   @override
@@ -78,6 +79,7 @@ class _Assessment26PageState extends State<Assessment26Page> {
                       _selections[buttonIndex] = false;
                     }
                   }
+                  lastIndex = index;
                 });
               },
             ),
@@ -128,27 +130,30 @@ class _Assessment26PageState extends State<Assessment26Page> {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: ElevatedButton(
                   onPressed: () {
-                    if (yearController.text.isNotEmpty &&
-                        monthController.text.isNotEmpty &&
-                        dayController.text.isNotEmpty) {
-                      if (_dateIsValid(
-                          context,
-                          int.parse(yearController.text),
-                          int.parse(monthController.text),)) {
-                        widget.uthUser.ass03Birthday = new DateTime(
+                    if (lastIndex != null) {
+                      if (lastIndex == 0 &&
+                          yearController.text.isNotEmpty &&
+                          monthController.text.isNotEmpty &&
+                          _dateIsValid(
+                            context,
                             int.parse(yearController.text),
                             int.parse(monthController.text),
-                            int.parse(dayController.text));
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    Assessment27Page(widget.uthUser)));
+                          )) {
+                        widget.uthUser.ass26Dentist = new DateTime(
+                            int.parse(yearController.text),
+                            int.parse(monthController.text));
                       }
+                      if (lastIndex == 1) {
+                        widget.uthUser.ass26Dentist = new DateTime(1900);
+                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Assessment27Page(widget.uthUser)));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(
-                              "Bitte vollständiges Geburtsdatum angeben.")));
+                          content: Text("Bitte treffen Sie eine Auswahl.")));
                     }
                   },
                   child: Text('Weiter'),
@@ -159,7 +164,7 @@ class _Assessment26PageState extends State<Assessment26Page> {
                       ),
                     ),
                     minimumSize:
-                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                        MaterialStateProperty.all(Size(width / 1.2, width / 8)),
                   ),
                 ),
               ),

@@ -4,11 +4,15 @@ import 'package:up_to_health/data/principals.dart';
 import 'package:up_to_health/data/todos.dart';
 import 'package:up_to_health/data/untersuchungen.dart';
 import 'package:up_to_health/data/labortests.dart';
+import 'package:up_to_health/data/user_principals.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/data/wellbeing.dart';
 
 class PrincipalsPage extends StatefulWidget {
   final category;
-  PrincipalsPage(this.category);
+  final UthUser uthUser;
+
+  PrincipalsPage(this.category, this.uthUser);
   @override
   _PrincipalsPageState createState() => _PrincipalsPageState();
 }
@@ -16,10 +20,10 @@ class PrincipalsPage extends StatefulWidget {
 class _PrincipalsPageState extends State<PrincipalsPage>
     with AutomaticKeepAliveClientMixin {
 
-  List<Principal> _getPrincipalsList(String category) {
+  List<Principal> _getPrincipalsList(String category, UthUser user) {
     switch (category) {
       case 'untersuchungen': {
-        return untersuchungen.toList();
+        return UserPrincipals().getUntersuchungen(user);
       }
       break;
 
@@ -45,13 +49,43 @@ class _PrincipalsPageState extends State<PrincipalsPage>
     }
   }
 
+  String _getHeader(String category) {
+    switch (category) {
+      case 'untersuchungen': {
+        return 'Untersuchungen';
+      }
+      break;
+
+      case 'labortests': {
+        return 'Labortests';
+      }
+      break;
+
+      case 'todos': {
+        return "To-Do's für dich";
+      }
+      break;
+
+      case 'antiaging': {
+        return 'Anti-Aging';
+      }
+      break;
+
+      case 'wellbeing': {
+        return 'Wellbeing';
+      }
+      break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     super.build(context);
-    var _principalsList = _getPrincipalsList(widget.category);
+    var _principalsList = _getPrincipalsList(widget.category, widget.uthUser);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Deine UpToHealth Pricipals"),
+        title: Text(_getHeader(widget.category)),
       ),
       body: ListView.builder(
         itemCount: _principalsList.length,
@@ -77,25 +111,31 @@ class _PrincipalsPageState extends State<PrincipalsPage>
                   },
                 );
               },
-              child: Card(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Icon(Icons.info_outlined),
-                          ),
-                          Text(
-                            '${_principalsList[index].subCategory}',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ],
+              child: SizedBox(
+                //height: 80,
+                child: Card(
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: Icon(Icons.info_outlined),
+                            ),
+                            Container(
+                              width: width*0.7,
+                              child: Text(
+                                '${_principalsList[index].subCategory}',
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

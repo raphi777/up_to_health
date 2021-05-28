@@ -146,7 +146,6 @@ class _Assessment25PageState extends State<Assessment25Page> {
                       if (lastIndex == 1) {
                         widget.uthUser.ass25Bloodsample = new DateTime(1900);
                       }
-                      print(widget.uthUser.ass25Bloodsample);
                       Navigator.push(
                           context,
                           MaterialPageRoute(

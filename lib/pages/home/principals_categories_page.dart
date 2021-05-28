@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'principals_page.dart';
 
 class PrincipalsCategoriesPage extends StatefulWidget {
+  final UthUser uthUser;
+
+  PrincipalsCategoriesPage(this.uthUser);
   @override
   _PrincipalsCategoriesPageState createState() =>
       _PrincipalsCategoriesPageState();
@@ -26,7 +30,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
         children: <Widget>[
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('untersuchungen'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('untersuchungen', widget.uthUser))),
             child: Column(
               children: [
                 Container(
@@ -50,7 +54,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('labortests'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('labortests', widget.uthUser))),
             child: Column(
               children: [
                 Container(
@@ -74,7 +78,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('todos'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('todos', widget.uthUser))),
             child: Column(
               children: [
                 Container(
@@ -98,7 +102,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('antiaging'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('antiaging', widget.uthUser))),
             child: Column(
               children: [
                 Container(
@@ -122,7 +126,7 @@ class _PrincipalsCategoriesPageState extends State<PrincipalsCategoriesPage>
           ),
           GestureDetector(
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PrincipalsPage('wellbeing'))),
+                MaterialPageRoute(builder: (context) => PrincipalsPage('wellbeing', widget.uthUser))),
             child: Column(
               children: [
                 Container(

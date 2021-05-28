@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:passwordfield/passwordfield.dart';
+import 'package:up_to_health/authentication/add_user.dart';
 import 'package:up_to_health/authentication/authentication_service.dart';
 import 'package:up_to_health/authentication/authentication_widget.dart';
+import 'package:up_to_health/data/uth_user.dart';
+import 'package:up_to_health/pages/registration/assessment_01_page.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Assessment32Page extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final UthUser uthUser;
+
+  Assessment32Page(this.uthUser);
+
+  Future<bool> signUp() async {
+    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    await AuthenticationService(_firebaseAuth).signUp(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +43,7 @@ class Assessment32Page extends StatelessWidget {
                 ),
                 labelText: 'E-Mail',
               ),
+              controller: emailController,
             ),
           ),
           Padding(
@@ -52,14 +68,15 @@ class Assessment32Page extends StatelessWidget {
                   onPressed: () {
                     if (emailController.text.isNotEmpty &&
                         passwordController.text.isNotEmpty) {
+                      uthUser.email = emailController.text.trim();
                       context.read<AuthenticationService>().signUp(
                           email: emailController.text.trim(),
                           password: passwordController.text.trim());
-                      //Navigator.pop(context);
-                      Navigator.push(
+                        //Navigator.pop(context);
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AuthenticationWidget()));
+                              builder: (context) => Assessment01Page(uthUser)));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Please enter E-Mail and Password.")));

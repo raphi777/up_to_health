@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
-import 'package:up_to_health/widgets/button_continue.dart';
 import 'assessment_30_page.dart';
 
 class Assessment29Page extends StatefulWidget {
+  final UthUser uthUser;
+
+  Assessment29Page(this.uthUser);
   @override
   _Assessment29PageState createState() => _Assessment29PageState();
 }
@@ -13,8 +16,18 @@ class _Assessment29PageState extends State<Assessment29Page> {
   int lastIndex;
   List<bool> _selections = List.generate(2, (_) => false);
 
+  bool _getSelection(int index) {
+    if (index == 0) {
+      return true;
+    }
+    if (index == 1) {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBarDefault(),
       extendBodyBehindAppBar: true,
@@ -49,11 +62,44 @@ class _Assessment29PageState extends State<Assessment29Page> {
                       _selections[buttonIndex] = false;
                     }
                   }
+                  lastIndex = index;
                 });
               },
             ),
           ),
-          ButtonContinue(Assessment30Page()),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 40),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (lastIndex != null) {
+                      widget.uthUser.ass29Aneurysmen = _getSelection(lastIndex);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Assessment30Page(widget.uthUser)));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Bitte treffen Sie eine Auswahl.")));
+                    }
+                  },
+                  child: Text('Weiter'),
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                    minimumSize:
+                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                  ),
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -95,7 +95,7 @@ final untersuchungen = [
   Principal(
       id: 'untersuchungen15',
       subCategory:
-          'Krebsfrüherkennungsuntersuchung der Genitalien und Prostata',
+          'Krebsfrüherkennungsuntersuchung der \nGenitalien und Prostata',
       algorithm: 'Wenn männlich und Alter ab 45 Jahren',
       description:
           '''Ein Vorsorge-Check der Prostata kann Leben retten. Ab dem 45. Lebensjahr wird Männern jährlich eine Tastuntersuchung der Prostata und der äußeren Genitalien empfohlen, um die bösartige Tumorerkrankung frühzeitig zu erkennen.'''),
