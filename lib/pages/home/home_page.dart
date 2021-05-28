@@ -13,38 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: GetUser(),
-    );
-  }
-}
-
-class GetUser extends StatefulWidget {
-  GetUserState createState() => GetUserState();
-}
-
-class GetUserState extends State {
-  UthUser uthUser = new UthUser();
-  @override
-  void initState() {
-    getUser();
-    super.initState();
-  }
-
-  Future<UthUser> getUser() async {
-    UthUser user = new UthUser();
-    var currentUser = FirebaseAuth.instance.currentUser;
-    await FirebaseFirestore.instance.doc('users/' + currentUser.uid).get().then((snapshot) {
-      user.fromMap(snapshot.data());
-    });
-    print("Current User Mail: " + user.email);
-    uthUser = user;
-    return user;
-  }
-
+  UthUser uthUser;
   PageController _pageController = PageController();
   int _selectedIndex = 0;
 
@@ -58,38 +27,109 @@ class GetUserState extends State {
     _pageController.jumpToPage(selectedIndex);
   }
 
+  Future<void> _getUser() async {
+    UthUser user = new UthUser();
+    var currentUser = FirebaseAuth.instance.currentUser;
+    await FirebaseFirestore.instance
+        .doc('users/' + currentUser.uid)
+        .get()
+        .then((snapshot) {
+      user.fromMap(snapshot.data());
+    });
+    print("Current User Mail: " + user.email);
+    uthUser = user;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'UpToHealth',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: Scaffold(
-        body: PageView(
-          controller: _pageController,
-          children: [
-            PrincipalsCategoriesPage(uthUser),
-            NotificationsPage(),
-            CompassPage(),
-            ProfilePage(),
-          ],
-          onPageChanged: _onPageChanged,
-          physics: NeverScrollableScrollPhysics(),
+    if (uthUser == null) {
+      return FutureBuilder(
+        future: _getUser(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done)
+            return MaterialApp(
+              title: 'UpToHealth',
+              theme: ThemeData(
+                primarySwatch: Colors.blue,
+                visualDensity: VisualDensity.adaptivePlatformDensity,
+              ),
+              home: Scaffold(
+                body: PageView(
+                  controller: _pageController,
+                  children: [
+                    PrincipalsCategoriesPage(uthUser),
+                    NotificationsPage(),
+                    CompassPage(),
+                    ProfilePage(),
+                  ],
+                  onPageChanged: _onPageChanged,
+                  physics: NeverScrollableScrollPhysics(),
+                ),
+                bottomNavigationBar: BottomNavigationBar(
+                  selectedItemColor: Colors.blue,
+                  onTap: _onItemTapped,
+                  currentIndex: _selectedIndex,
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.home), label: "Principals"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.notifications),
+                        label: "Benachrichtigungen"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.navigation), label: "Compass"),
+                    BottomNavigationBarItem(
+                        icon: Icon(Icons.person), label: "Profil"),
+                  ],
+                ),
+              ),
+            );
+          if (snapshot.connectionState == ConnectionState.waiting)
+            return Container(
+                height: MediaQuery.of(context).size.height / 20,
+                width: MediaQuery.of(context).size.width / 10,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50.0),
+                  child: CircularProgressIndicator(),
+                ));
+          return Container();
+        },
+      );
+    } else {
+      return MaterialApp(
+        title: 'UpToHealth',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.blue,
-          onTap: _onItemTapped,
-          currentIndex: _selectedIndex,
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Principals"),
-            BottomNavigationBarItem(icon: Icon(Icons.notifications), label: "Benachrichtigungen"),
-            BottomNavigationBarItem(icon: Icon(Icons.navigation), label: "Compass"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-          ],
+        home: Scaffold(
+          body: PageView(
+            controller: _pageController,
+            children: [
+              PrincipalsCategoriesPage(uthUser),
+              NotificationsPage(),
+              CompassPage(),
+              ProfilePage(),
+            ],
+            onPageChanged: _onPageChanged,
+            physics: NeverScrollableScrollPhysics(),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.blue,
+            onTap: _onItemTapped,
+            currentIndex: _selectedIndex,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home), label: "Principals"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.notifications), label: "Benachrichtigungen"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.navigation), label: "Compass"),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: "Profil"),
+            ],
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
