@@ -27,10 +27,10 @@ class GetUser extends StatefulWidget {
 }
 
 class GetUserState extends State {
-  UthUser uthUser;
+  UthUser uthUser = new UthUser();
   @override
-  void initState() async {
-    uthUser = await getUser();
+  void initState() {
+    getUser();
     super.initState();
   }
 
@@ -41,6 +41,7 @@ class GetUserState extends State {
       user.fromMap(snapshot.data());
     });
     print("Current User Mail: " + user.email);
+    uthUser = user;
     return user;
   }
 

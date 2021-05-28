@@ -107,13 +107,13 @@ class UthUser {
 
   void fromMap(Map map) {
     Timestamp timeBirthday = map['ass03Birthday'];
-    var ass03Birthday = DateTime.fromMicrosecondsSinceEpoch(timeBirthday.millisecondsSinceEpoch);
+    var ass03Birthday = DateTime.fromMillisecondsSinceEpoch(timeBirthday.millisecondsSinceEpoch);
     Timestamp timeBloodsample = map['ass25Bloodsample'];
-    var ass25Bloodsample = DateTime.fromMicrosecondsSinceEpoch(timeBloodsample.millisecondsSinceEpoch);
+    var ass25Bloodsample = DateTime.fromMillisecondsSinceEpoch(timeBloodsample.millisecondsSinceEpoch);
     Timestamp timeDentist = map['ass26Dentist'];
-    var ass26Dentist = DateTime.fromMicrosecondsSinceEpoch(timeDentist.millisecondsSinceEpoch);
+    var ass26Dentist = DateTime.fromMillisecondsSinceEpoch(timeDentist.millisecondsSinceEpoch);
     Timestamp timeGeneralpractitioner = map['ass27Generalpractitioner'];
-    var ass27Generalpractitioner = DateTime.fromMicrosecondsSinceEpoch(timeGeneralpractitioner.millisecondsSinceEpoch);
+    var ass27Generalpractitioner = DateTime.fromMillisecondsSinceEpoch(timeGeneralpractitioner.millisecondsSinceEpoch);
 
     this.email = map['email'];
     this.ass01Name = map['ass01Name'];
@@ -153,5 +153,11 @@ class UthUser {
     DateTime now = new DateTime.now();
     double age = now.difference(this.ass03Birthday).inDays / 365;
     return age.toInt();
+  }
+
+  double getBMI() {
+    double height = this.ass04Height.toDouble() / 100;
+    double bmi = this.ass05Weight / (height * height);
+    return bmi;
   }
 }

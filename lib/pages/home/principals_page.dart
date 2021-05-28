@@ -1,80 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:up_to_health/data/antiaging.dart';
 import 'package:up_to_health/data/principals.dart';
-import 'package:up_to_health/data/todos.dart';
-import 'package:up_to_health/data/untersuchungen.dart';
-import 'package:up_to_health/data/labortests.dart';
 import 'package:up_to_health/data/user_principals.dart';
 import 'package:up_to_health/data/uth_user.dart';
-import 'package:up_to_health/data/wellbeing.dart';
 
 class PrincipalsPage extends StatefulWidget {
   final category;
   final UthUser uthUser;
 
   PrincipalsPage(this.category, this.uthUser);
+
   @override
   _PrincipalsPageState createState() => _PrincipalsPageState();
 }
 
 class _PrincipalsPageState extends State<PrincipalsPage>
     with AutomaticKeepAliveClientMixin {
-
   List<Principal> _getPrincipalsList(String category, UthUser user) {
     switch (category) {
-      case 'untersuchungen': {
-        return UserPrincipals().getUntersuchungen(user);
-      }
-      break;
+      case 'untersuchungen':
+        {
+          return UserPrincipals().getUntersuchungen(user);
+        }
+        break;
 
-      case 'labortests': {
-        return labortests.toList();
-      }
-      break;
+      case 'labortests':
+        {
+          return UserPrincipals().getLabortests(user);
+        }
+        break;
 
-      case 'todos': {
-        return todos.toList();
-      }
-      break;
+      case 'todos':
+        {
+          return UserPrincipals().getTodos(user);
+        }
+        break;
 
-      case 'antiaging': {
-        return antiaging.toList();
-      }
-      break;
+      case 'antiaging':
+        {
+          return UserPrincipals().getAntiaging(user);
+        }
+        break;
 
-      case 'wellbeing': {
-        return wellbeing.toList();
-      }
-      break;
+      case 'wellbeing':
+        {
+          return UserPrincipals().getWellbeing(user);
+        }
+        break;
     }
   }
 
   String _getHeader(String category) {
     switch (category) {
-      case 'untersuchungen': {
-        return 'Untersuchungen';
-      }
-      break;
+      case 'untersuchungen':
+        {
+          return 'Untersuchungen';
+        }
+        break;
 
-      case 'labortests': {
-        return 'Labortests';
-      }
-      break;
+      case 'labortests':
+        {
+          return 'Labortests';
+        }
+        break;
 
-      case 'todos': {
-        return "To-Do's für dich";
-      }
-      break;
+      case 'todos':
+        {
+          return "To-Do's für dich";
+        }
+        break;
 
-      case 'antiaging': {
-        return 'Anti-Aging';
-      }
-      break;
+      case 'antiaging':
+        {
+          return 'Anti-Aging';
+        }
+        break;
 
-      case 'wellbeing': {
-        return 'Wellbeing';
-      }
-      break;
+      case 'wellbeing':
+        {
+          return 'Wellbeing';
+        }
+        break;
     }
   }
 
@@ -125,7 +130,7 @@ class _PrincipalsPageState extends State<PrincipalsPage>
                               child: Icon(Icons.info_outlined),
                             ),
                             Container(
-                              width: width*0.7,
+                              width: width * 0.7,
                               child: Text(
                                 '${_principalsList[index].subCategory}',
                                 style: TextStyle(fontSize: 16),
