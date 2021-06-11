@@ -30,6 +30,7 @@ dependencies:
   provider: ^5.0.0
   passwordfield: ^0.0.82
   flutter_svg: ^0.22.0
+  flutter_local_notifications: ^6.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
