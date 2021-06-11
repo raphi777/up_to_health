@@ -26,6 +26,7 @@ dependencies:
   firebase_core: ^1.1.0
   firebase_auth: ^1.1.2
   cloud_firestore: ^1.0.7
+  firebase_messaging: ^10.0.2
   provider: ^5.0.0
   passwordfield: ^0.0.82
   flutter_svg: ^0.22.0
