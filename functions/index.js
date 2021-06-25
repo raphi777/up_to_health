@@ -19,8 +19,8 @@ for (let i = 0; i <= notification.notificationData.length; i++) {
 
         const message = {
           data: {
-            title: notification.notificationData[i].title,
-            body: notification.notificationData[i].body,
+            title: notification.notificationData[1].title,
+            body: notification.notificationData[1].body,
           },
           token: registrationToken,
         };

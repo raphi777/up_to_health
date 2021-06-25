@@ -3,20 +3,27 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:up_to_health/services/notification_service.dart';
 import 'authentication/authentication_service.dart';
 import 'authentication/authentication_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+/*Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
   print('Handling a background message ${message.messageId}');
   print(message.data);
   print(message.data['title']);
   print(message.data['body']);
-  flutterLocalNotificationsPlugin.show(
+
+  var scheduleNotificationDateTime = DateTime.now().add(Duration(seconds: 15));
+
+  flutterLocalNotificationsPlugin.zonedSchedule(
       message.notification.hashCode,
       message.data['title'],
       message.data['body'],
+      scheduleNotificationDateTime,
       NotificationDetails(
         android: AndroidNotificationDetails(
           channel.id,
@@ -25,6 +32,27 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
           icon: 'launch_background',
         ),
       ));
+}*/
+
+/*Future<void> scheduleNotification() async {
+  var scheduleNotificationDateTime = DateTime.now().add(Duration(seconds: 15));
+  tz.initializeTimeZones();
+  flutterLocalNotificationsPlugin.zonedSchedule(
+      0,
+      'seeees',
+      'hier könnte eine heftige message stehen',
+      tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          channel.id,
+          channel.name,
+          channel.description,
+          icon: 'launch_background',
+        ),
+      ),
+      androidAllowWhileIdle: true,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime);
 }
 
 AndroidNotificationChannel channel = const AndroidNotificationChannel(
@@ -35,12 +63,13 @@ AndroidNotificationChannel channel = const AndroidNotificationChannel(
 );
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
+*/
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  //FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin>()
