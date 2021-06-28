@@ -17,7 +17,7 @@ class _NotificationsPageState extends State<NotificationsPage>
       ),
       body: ElevatedButton(
         onPressed: () {
-          scheduleNotification();
+          scheduleNotificationDaily();
         },
       ),
     );

@@ -88,5 +88,6 @@ class UserNotifications {
       userNotificaitons.add(allNotifications[20]);
     }
 
+    return userNotificaitons;
   }
 }
