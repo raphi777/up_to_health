@@ -1,5 +1,15 @@
 import 'package:timezone/timezone.dart' as tz;
 
+// show notification every hour
+tz.TZDateTime nextInstanceOf1Hour() {
+  final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  tz.TZDateTime scheduledDate =
+  tz.TZDateTime(tz.local, now.year, now.month, now.day, now.hour + 1);
+  if (scheduledDate.isBefore(now)) {
+    scheduledDate = scheduledDate.add(const Duration(hours: 1));
+  }
+  return scheduledDate;
+}
 // show notification every 2 hours
 tz.TZDateTime nextInstanceOf2Hours() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
@@ -10,7 +20,7 @@ tz.TZDateTime nextInstanceOf2Hours() {
   }
   return scheduledDate;
 }
-// show notification every day at 8:00 (or weekly 18:00 with scheduleNotificationWeekly)
+// show notification every day at 8:00 (or weekly 18:00 with DateTimeComponents.dayOfWeekAndTime)
 tz.TZDateTime nextInstanceOf8() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
@@ -20,7 +30,7 @@ tz.TZDateTime nextInstanceOf8() {
   }
   return scheduledDate;
 }
-// show notification every day at 18:00 (or weekly 18:00 with scheduleNotificationWeekly)
+// show notification every day at 18:00 (or weekly 18:00 with DateTimeComponents.dayOfWeekAndTime)
 tz.TZDateTime nextInstanceOf10() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =
@@ -30,7 +40,7 @@ tz.TZDateTime nextInstanceOf10() {
   }
   return scheduledDate;
 }
-// show notification every day at 20:00 (or weekly 20:00 with scheduleNotificationWeekly)
+// show notification every day at 20:00 (or weekly 20:00 with DateTimeComponents.dayOfWeekAndTime)
 tz.TZDateTime _nextInstanceOf20() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =

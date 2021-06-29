@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/services/notification_service.dart';
+import 'package:up_to_health/data/user_notifications.dart';
 
 class NotificationsPage extends StatefulWidget {
+  final UthUser uthUser;
+
+  NotificationsPage(this.uthUser);
   @override
   _NotificationsPageState createState() => _NotificationsPageState();
 }
@@ -17,7 +22,7 @@ class _NotificationsPageState extends State<NotificationsPage>
       ),
       body: ElevatedButton(
         onPressed: () {
-          scheduleNotificationDaily();
+          triggerNotifications(UserNotifications().getNotifications(widget.uthUser));
         },
       ),
     );

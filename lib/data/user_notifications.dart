@@ -7,6 +7,7 @@ class UserNotifications {
   List<Notification> getNotifications(UthUser user) {
     List<Notification> allNotifications = notifications.toList();
     List<Notification> userNotificaitons = [];
+    print(allNotifications[0]);
 
     //Impfung
     userNotificaitons.add(allNotifications[0]);
@@ -87,6 +88,8 @@ class UserNotifications {
     if (user.ass24Medication == true) {
       userNotificaitons.add(allNotifications[20]);
     }
+    // Test
+    userNotificaitons.add(allNotifications[21]);
 
     return userNotificaitons;
   }

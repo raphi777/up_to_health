@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                   controller: _pageController,
                   children: [
                     PrincipalsCategoriesPage(uthUser),
-                    NotificationsPage(),
+                    NotificationsPage(uthUser),
                     CompassPage(),
                     ProfilePage(),
                   ],
@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             controller: _pageController,
             children: [
               PrincipalsCategoriesPage(uthUser),
-              NotificationsPage(),
+              NotificationsPage(uthUser),
               CompassPage(),
               ProfilePage(),
             ],
