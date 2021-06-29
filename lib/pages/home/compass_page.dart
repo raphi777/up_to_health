@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:up_to_health/widgets/assessment_title.dart';
 
 class CompassPage extends StatefulWidget {
   @override
@@ -52,43 +51,47 @@ class _CompassPageState extends State<CompassPage>
                         padding: const EdgeInsets.all(16.0),
                         child: Text(_ratingQuestionsList[index]),
                       ),
-                      RatingBar.builder(
-                        wrapAlignment: WrapAlignment.center,
-                        initialRating: 3,
-                        itemCount: 5,
-                        itemBuilder: (context, index) {
-                          switch (index) {
-                            case 0:
-                              return Icon(
-                                Icons.sentiment_very_dissatisfied,
-                                color: Colors.red,
-                              );
-                            case 1:
-                              return Icon(
-                                Icons.sentiment_dissatisfied,
-                                color: Colors.redAccent,
-                              );
-                            case 2:
-                              return Icon(
-                                Icons.sentiment_neutral,
-                                color: Colors.amber,
-                              );
-                            case 3:
-                              return Icon(
-                                Icons.sentiment_satisfied,
-                                color: Colors.lightGreen,
-                              );
-                            case 4:
-                              return Icon(
-                                Icons.sentiment_very_satisfied,
-                                color: Colors.green,
-                              );
-                          }
-                          return null;
-                        },
-                        onRatingUpdate: (rating) {
-                          print(rating);
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 8.0, right: 8.0, bottom: 16.0),
+                        child: RatingBar.builder(
+                          wrapAlignment: WrapAlignment.center,
+                          initialRating: 0,
+                          itemCount: 5,
+                          itemBuilder: (context, index) {
+                            switch (index) {
+                              case 0:
+                                return Icon(
+                                  Icons.sentiment_very_dissatisfied,
+                                  color: Colors.red,
+                                );
+                              case 1:
+                                return Icon(
+                                  Icons.sentiment_dissatisfied,
+                                  color: Colors.redAccent,
+                                );
+                              case 2:
+                                return Icon(
+                                  Icons.sentiment_neutral,
+                                  color: Colors.amber,
+                                );
+                              case 3:
+                                return Icon(
+                                  Icons.sentiment_satisfied,
+                                  color: Colors.lightGreen,
+                                );
+                              case 4:
+                                return Icon(
+                                  Icons.sentiment_very_satisfied,
+                                  color: Colors.green,
+                                );
+                            }
+                            return null;
+                          },
+                          onRatingUpdate: (rating) {
+                            print(rating);
+                          },
+                        ),
                       ),
                     ],
                   ),
