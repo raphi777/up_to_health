@@ -9,6 +9,7 @@ import 'authentication/authentication_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:up_to_health/services/local_notify_manager.dart';
 
 /*Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -94,10 +95,18 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    var initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-    var initializationSettings =
-        InitializationSettings(android: initializationSettingsAndroid);
+
+    /*const initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');*/
+
+    /*final IOSInitializationSettings initializationSettingsIOS =
+    IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);*/
+    /*final IOSInitializationSettings initializationSettingsIOS =
+    IOSInitializationSettings();*/
+
+    /*final initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
 
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
 
@@ -120,7 +129,7 @@ class _MyAppState extends State<MyApp> {
       }
     });
 
-    getToken();
+    getToken();*/
   }
 
   @override

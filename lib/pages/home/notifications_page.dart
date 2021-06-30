@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:up_to_health/data/uth_user.dart';
-import 'package:up_to_health/services/notification_service.dart';
 import 'package:up_to_health/data/user_notifications.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:up_to_health/data/notification.dart' as notif;
+import 'package:up_to_health/services/local_notify_manager.dart';
 
 class NotificationsPage extends StatefulWidget {
   final UthUser uthUser;
@@ -17,12 +17,39 @@ class NotificationsPage extends StatefulWidget {
 
 class _NotificationsPageState extends State<NotificationsPage>
     with AutomaticKeepAliveClientMixin {
-  List<bool> switchStatusList = [false, false, false, false, false, false, false, false, false];
+  @override
+  void initState() {
+    super.initState();
+
+    localNotifyManager.setOnNotificationReceive(onNotificationReceive);
+    localNotifyManager.setOnNotificationClick(onNotificationClick);
+  }
+
+  onNotificationReceive(ReceiveNotification notification) {
+    print('Notification Received: ${notification.id}');
+  }
+
+  onNotificationClick(String payload) {
+    print('Payload $payload');
+  }
+
+  List<bool> switchStatusList = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    List<notif.Notification> _NotificationsList = UserNotifications().getNotifications(widget.uthUser);
+    List<notif.Notification> _NotificationsList =
+        UserNotifications().getNotifications(widget.uthUser);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Benachrichtigungen'),
@@ -70,7 +97,7 @@ class _NotificationsPageState extends State<NotificationsPage>
           ),
           ElevatedButton(
             onPressed: () {
-              triggerNotifications(
+              localNotifyManager.triggerNotifications(
                   UserNotifications().getNotifications(widget.uthUser));
             },
           ),
