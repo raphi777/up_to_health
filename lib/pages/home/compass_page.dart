@@ -17,6 +17,7 @@ class _CompassPageState extends State<CompassPage>
     "Du hast eine Routine-Untersuchung beim Arzt wahrgenommen",
     "Du hast deine \"To-Do's für dich\" pflichtbewusst ausgeführt (z.B. selbst abtasten)",
   ];
+  List<double> _ratingPointsList = [0, 0, 0, 0, 0, 0, 0];
 
   @override
   Widget build(BuildContext context) {
@@ -90,11 +91,54 @@ class _CompassPageState extends State<CompassPage>
                           },
                           onRatingUpdate: (rating) {
                             print(rating);
+                            print(index);
+                            _ratingPointsList[index] = rating;
                           },
                         ),
                       ),
                     ],
                   ),
+                );
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              child: Text('Speichern'),
+              onPressed: () {
+                var score = 0.0;
+                for (var i = 0; i < _ratingPointsList.length; i++) {
+                  score = score + _ratingPointsList[i];
+                  print('Rating No $i ' + _ratingPointsList[i].toString());
+                }
+                var compassMsg;
+                if (score >= 25) {
+                  compassMsg = 'Dein UpToHealth-Score ist weltklasse - weiter so und ja nich nachlassen!';
+                }
+                if (score < 25 && score >= 15) {
+                  compassMsg = 'Du stehst schon ganz gut da, aber da ist auf jeden Fall noch Luft nach oben - achte stehts auf eine gesunde Lebensweise und du wirst sehen wie stark sich dein UpToHealth-Score noch verbessern lässt';
+                }
+                if (score < 15) {
+                  compassMsg = 'Da gibt es noch viel Nachholbedarf. Mach dich am besten noch einmal mit deinen UpToHealth-Principals vertraut, um zu verstehen, was für dich und eine gesunde Lebensweise wichtig ist';
+                }
+                print('score: $score');
+                int iScore = score.toInt();
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Dein heutiger Score beträgt $iScore!'),
+                      content: Text(compassMsg),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('OK'))
+                      ],
+                    );
+                  },
                 );
               },
             ),

@@ -96,6 +96,7 @@ class _NotificationsPageState extends State<NotificationsPage>
                 }),
           ),
           ElevatedButton(
+            child: Text('Trigger Notifications'),
             onPressed: () {
               localNotifyManager.triggerNotifications(
                   UserNotifications().getNotifications(widget.uthUser));

@@ -27,7 +27,7 @@ class LocalNotifyManager {
         .requestPermissions(
           alert: true,
           badge: true,
-          sound: true,
+          sound: false,
         );
   }
 
@@ -92,6 +92,12 @@ class LocalNotifyManager {
           userNotifications[i].schedule,
           userNotifications[i].matchDateTimeComponents);
     }
+    /*showNotification(
+        userNotifications[0].id,
+        userNotifications[0].title,
+        userNotifications[0].body,
+        userNotifications[0].schedule,
+        userNotifications[0].matchDateTimeComponents);*/
   }
 }
 
