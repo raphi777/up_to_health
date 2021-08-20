@@ -25,13 +25,7 @@ final antiaging = [
       subCategory: 'Gesunde Ernährung',
       algorithm: 'Für alle',
       description:
-          '''Eine ausgewogene Ernährung ist wichtig, damit du gesund und leistungsfähig bleibst - damit spielt sie auch aus Anti-Aging Sicht eine signifikante Rolle. Wir sind uns sicher, du weißt, was eine gesunde Ernährung bedeutet, aber hier noch einmal eine kurze Zusammenfassung:
-                - Überwiegend pflanzliche Lebensmittel verzehren, idealerweise 3 Portionen Gemüse und 2 Portionen Obst am Tag
-                - Reduzierter Konsum von tierischen Proteinen
-                - Zucker und Salz reduzieren
-                - Stets zur Vollkornvariante greifen
-                - Frische anstelle von verarbeiteten Lebensmitteln
-                - Karzinogene Lebensmittel vermeiden (z.B. verarbeitete Fleischprodukte)'''),
+          '''Eine ausgewogene Ernährung ist wichtig, damit du gesund und leistungsfähig bleibst - damit spielt sie auch aus Anti-Aging Sicht eine signifikante Rolle. Wir sind uns sicher, du weißt, was eine gesunde Ernährung bedeutet, aber hier noch einmal eine kurze Zusammenfassung:\n\n- Überwiegend pflanzliche Lebensmittel verzehren, idealerweise 3 Portionen Gemüse und 2 Portionen Obst am Tag\n\n- Reduzierter Konsum von tierischen Proteinen\n\n- Zucker und Salz reduzieren\n\n- Stets zur Vollkornvariante greifen\n\n- Frische anstelle von verarbeiteten Lebensmitteln\n\n- Karzinogene Lebensmittel vermeiden (z.B. verarbeitete Fleischprodukte)'''),
   Principal(
       id: 'antiaging04',
       subCategory: 'Verzicht',

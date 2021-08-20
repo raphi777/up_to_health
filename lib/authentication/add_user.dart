@@ -17,4 +17,12 @@ class AddUser {
         .doc(currentUser.uid)
         .set(user.toJson());
   }
+
+  void updateSingleFirestoreParam(var data, String param) {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .update({'$param' : data});
+  }
 }

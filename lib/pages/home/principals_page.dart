@@ -102,16 +102,18 @@ class _PrincipalsPageState extends State<PrincipalsPage>
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('${_principalsList[index].subCategory}'),
-                      content: Text('${_principalsList[index].description}'),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Text('OK'))
-                      ],
+                    return SingleChildScrollView(
+                      child: AlertDialog(
+                        title: Text('${_principalsList[index].subCategory}'),
+                        content: Text('${_principalsList[index].description}'),
+                        actions: [
+                          TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'))
+                        ],
+                      ),
                     );
                   },
                 );

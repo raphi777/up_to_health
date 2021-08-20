@@ -1,6 +1,16 @@
 import 'package:timezone/timezone.dart' as tz;
 
 // show notification 10 minutes
+tz.TZDateTime nextInstanceOf1Minutes() {
+  final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  tz.TZDateTime scheduledDate =
+  tz.TZDateTime(tz.local, now.year, now.month, now.day, now.hour, now.minute + 1);
+  if (scheduledDate.isBefore(now)) {
+    scheduledDate = scheduledDate.add(const Duration(minutes: 1));
+  }
+  return scheduledDate;
+}
+// show notification 10 minutes
 tz.TZDateTime nextInstanceOf10Minutes() {
   final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime scheduledDate =

@@ -3,6 +3,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'dart:io' show Platform;
 import 'package:rxdart/subjects.dart';
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 import 'package:up_to_health/data/notification.dart' as notif;
 
 class LocalNotifyManager {
@@ -74,7 +75,8 @@ class LocalNotifyManager {
       id,
       title,
       body,
-      schedule,
+      //schedule,
+        tz.TZDateTime.now(tz.local).add(Duration(seconds: 5)),
       platformChannel,
       payload: 'New Payload',
         androidAllowWhileIdle: true,
@@ -84,20 +86,20 @@ class LocalNotifyManager {
   }
 
   void triggerNotifications(List<notif.Notification> userNotifications) {
-    for (var i = 0; i < userNotifications.length; i++) {
+    /*for (var i = 0; i < userNotifications.length; i++) {
       showNotification(
           userNotifications[i].id,
           userNotifications[i].title,
           userNotifications[i].body,
           userNotifications[i].schedule,
           userNotifications[i].matchDateTimeComponents);
-    }
-    /*showNotification(
+    }*/
+    showNotification(
         userNotifications[0].id,
         userNotifications[0].title,
         userNotifications[0].body,
         userNotifications[0].schedule,
-        userNotifications[0].matchDateTimeComponents);*/
+        userNotifications[0].matchDateTimeComponents);
   }
 }
 

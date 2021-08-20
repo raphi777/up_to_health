@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:up_to_health/authentication/add_user.dart';
+import 'package:up_to_health/data/uth_user.dart';
 
 class CompassPage extends StatefulWidget {
+  final UthUser uthUser;
+
+  CompassPage(this.uthUser);
   @override
   _CompassPageState createState() => _CompassPageState();
 }
@@ -124,6 +129,10 @@ class _CompassPageState extends State<CompassPage>
                 }
                 print('score: $score');
                 int iScore = score.toInt();
+                //List<int> dailyScores = await AddUser().getDailyScoresParam();
+                var dailyScores = widget.uthUser.dailyScore;
+                dailyScores.add(iScore);
+                AddUser().updateSingleFirestoreParam([iScore], 'dailyScores');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {

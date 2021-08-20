@@ -33,6 +33,7 @@ class UthUser {
   bool ass29Aneurysmen;
   bool ass30Pregnant;
   String ass31Insurance;
+  List<int> dailyScore;
 
   UthUser({
     this.email,
@@ -66,7 +67,8 @@ class UthUser {
     this.ass28Heart,
     this.ass29Aneurysmen = false,
     this.ass30Pregnant = false,
-    this.ass31Insurance
+    this.ass31Insurance,
+    this.dailyScore
   });
 
   Map<String, dynamic> toJson() =>
@@ -102,7 +104,8 @@ class UthUser {
         'ass28Heart' : ass28Heart,
         'ass29Aneurysmen' : ass29Aneurysmen,
         'ass30Pregnant' : ass30Pregnant,
-        'ass31Insurance' : ass31Insurance
+        'ass31Insurance' : ass31Insurance,
+        'dailyScore' : dailyScore
       };
 
   void fromMap(Map map) {
@@ -147,6 +150,7 @@ class UthUser {
     this.ass29Aneurysmen = map['ass29Aneurysmen'];
     this.ass30Pregnant = map['ass30Pregnant'];
     this.ass31Insurance = map['ass31Insurance'];
+    this.dailyScore = map['dailyScore'];
   }
 
   int getAge() {

@@ -157,6 +157,6 @@ final notifications = [
       title: 'Test Notification',
       body:
       '''This is a test notification that appears every 10 minutes''',
-      schedule: nextInstanceOf10Minutes(),
+      schedule: nextInstanceOf1Minutes(),
       matchDateTimeComponents: DateTimeComponents.time)
 ];
