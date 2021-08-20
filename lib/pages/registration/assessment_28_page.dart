@@ -3,6 +3,8 @@ import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
 import 'assessment_29_page.dart';
+import 'assessment_30_page.dart';
+import 'assessment_31_page.dart';
 
 class Assessment28Page extends StatefulWidget {
   final UthUser uthUser;
@@ -76,11 +78,30 @@ class _Assessment28PageState extends State<Assessment28Page> {
                   onPressed: () {
                     if (lastIndex != null) {
                       widget.uthUser.ass28Heart = _getSelection(lastIndex);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Assessment29Page(widget.uthUser)));
+                      if (widget.uthUser.ass02Gender == "MALE" && widget.uthUser.getAge() > 64) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment29Page(widget.uthUser)));
+                      }
+                      else if (widget.uthUser.ass02Gender == "FEMALE") {
+                        widget.uthUser.ass29Aneurysmen = false;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment30Page(widget.uthUser)));
+                      }
+                      else {
+                        widget.uthUser.ass29Aneurysmen = false;
+                        widget.uthUser.ass30Pregnant = false;
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment31Page(widget.uthUser)));
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Bitte treffen Sie eine Auswahl.")));

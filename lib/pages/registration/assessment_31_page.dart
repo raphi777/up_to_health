@@ -4,12 +4,12 @@ import 'package:up_to_health/authentication/authentication_widget.dart';
 import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
-import 'assessment_32_page.dart';
 
 class Assessment31Page extends StatefulWidget {
   final UthUser uthUser;
 
   Assessment31Page(this.uthUser);
+
   @override
   _Assessment31PageState createState() => _Assessment31PageState();
 }
@@ -58,7 +58,9 @@ class _Assessment31PageState extends State<Assessment31Page> {
               isSelected: _selections,
               onPressed: (int index) {
                 setState(() {
-                  for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+                  for (int buttonIndex = 0;
+                      buttonIndex < _selections.length;
+                      buttonIndex++) {
                     if (buttonIndex == index) {
                       _selections[buttonIndex] = true;
                     } else {
@@ -84,11 +86,6 @@ class _Assessment31PageState extends State<Assessment31Page> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => AuthenticationWidget()));
-                      /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Assessment32Page(widget.uthUser)));*/
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Bitte treffen Sie eine Auswahl.")));
@@ -102,7 +99,7 @@ class _Assessment31PageState extends State<Assessment31Page> {
                       ),
                     ),
                     minimumSize:
-                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                        MaterialStateProperty.all(Size(width / 1.2, width / 8)),
                   ),
                 ),
               ),
@@ -113,4 +110,3 @@ class _Assessment31PageState extends State<Assessment31Page> {
     );
   }
 }
-

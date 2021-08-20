@@ -3,11 +3,13 @@ import 'package:up_to_health/data/uth_user.dart';
 import 'package:up_to_health/widgets/app_bar_default.dart';
 import 'package:up_to_health/widgets/assessment_title.dart';
 import 'assessment_30_page.dart';
+import 'assessment_31_page.dart';
 
 class Assessment29Page extends StatefulWidget {
   final UthUser uthUser;
 
   Assessment29Page(this.uthUser);
+
   @override
   _Assessment29PageState createState() => _Assessment29PageState();
 }
@@ -33,7 +35,8 @@ class _Assessment29PageState extends State<Assessment29Page> {
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          AssessmentTitle('[Wenn älter als 65 Jahre und männlich] Hattest du bereits ein Aneurysmen-Screening der Bauchschlagader?'),
+          AssessmentTitle(
+              'Hattest du bereits ein Aneurysmen-Screening der Bauchschlagader?'),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ToggleButtons(
@@ -55,7 +58,9 @@ class _Assessment29PageState extends State<Assessment29Page> {
               isSelected: _selections,
               onPressed: (int index) {
                 setState(() {
-                  for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+                  for (int buttonIndex = 0;
+                      buttonIndex < _selections.length;
+                      buttonIndex++) {
                     if (buttonIndex == index) {
                       _selections[buttonIndex] = true;
                     } else {
@@ -76,11 +81,19 @@ class _Assessment29PageState extends State<Assessment29Page> {
                   onPressed: () {
                     if (lastIndex != null) {
                       widget.uthUser.ass29Aneurysmen = _getSelection(lastIndex);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Assessment30Page(widget.uthUser)));
+                      if (widget.uthUser.ass02Gender == "FEMALE") {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment30Page(widget.uthUser)));
+                      } else {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment31Page(widget.uthUser)));
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Bitte treffen Sie eine Auswahl.")));
@@ -94,7 +107,7 @@ class _Assessment29PageState extends State<Assessment29Page> {
                       ),
                     ),
                     minimumSize:
-                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                        MaterialStateProperty.all(Size(width / 1.2, width / 8)),
                   ),
                 ),
               ),

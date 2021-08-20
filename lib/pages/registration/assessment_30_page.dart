@@ -8,6 +8,7 @@ class Assessment30Page extends StatefulWidget {
   final UthUser uthUser;
 
   Assessment30Page(this.uthUser);
+
   @override
   _Assessment30PageState createState() => _Assessment30PageState();
 }
@@ -33,7 +34,7 @@ class _Assessment30PageState extends State<Assessment30Page> {
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          AssessmentTitle('[Wenn weiblich] Bist du gerade schwanger?'),
+          AssessmentTitle('Bist du gerade schwanger?'),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ToggleButtons(
@@ -55,7 +56,9 @@ class _Assessment30PageState extends State<Assessment30Page> {
               isSelected: _selections,
               onPressed: (int index) {
                 setState(() {
-                  for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+                  for (int buttonIndex = 0;
+                      buttonIndex < _selections.length;
+                      buttonIndex++) {
                     if (buttonIndex == index) {
                       _selections[buttonIndex] = true;
                     } else {
@@ -94,7 +97,7 @@ class _Assessment30PageState extends State<Assessment30Page> {
                       ),
                     ),
                     minimumSize:
-                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                        MaterialStateProperty.all(Size(width / 1.2, width / 8)),
                   ),
                 ),
               ),
@@ -105,4 +108,3 @@ class _Assessment30PageState extends State<Assessment30Page> {
     );
   }
 }
-
