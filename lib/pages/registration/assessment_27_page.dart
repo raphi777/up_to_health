@@ -9,6 +9,7 @@ class Assessment27Page extends StatefulWidget {
   final UthUser uthUser;
 
   Assessment27Page(this.uthUser);
+
   @override
   _Assessment27PageState createState() => _Assessment27PageState();
 }
@@ -47,7 +48,8 @@ class _Assessment27PageState extends State<Assessment27Page> {
       extendBodyBehindAppBar: true,
       body: Column(
         children: [
-          AssessmentTitle('Wann war deine letzte Routineuntersuchung beim Hausarzt?'),
+          AssessmentTitle(
+              'Wann war deine letzte Routineuntersuchung beim Hausarzt?'),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ToggleButtons(
@@ -69,7 +71,9 @@ class _Assessment27PageState extends State<Assessment27Page> {
               isSelected: _selections,
               onPressed: (int index) {
                 setState(() {
-                  for (int buttonIndex = 0; buttonIndex < _selections.length; buttonIndex++) {
+                  for (int buttonIndex = 0;
+                      buttonIndex < _selections.length;
+                      buttonIndex++) {
                     if (buttonIndex == index) {
                       _selections[buttonIndex] = true;
                     } else {
@@ -127,6 +131,7 @@ class _Assessment27PageState extends State<Assessment27Page> {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: ElevatedButton(
                   onPressed: () {
+                    bool formCorrect = false;
                     if (lastIndex != null) {
                       if (lastIndex == 0 &&
                           yearController.text.isNotEmpty &&
@@ -139,15 +144,24 @@ class _Assessment27PageState extends State<Assessment27Page> {
                         widget.uthUser.ass27Generalpractitioner = new DateTime(
                             int.parse(yearController.text),
                             int.parse(monthController.text));
+                        formCorrect = true;
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(
+                                "Geben Sie einen Zeitpunkt an oder wählen Sie 'Weiß ich nicht'")));
                       }
                       if (lastIndex == 1) {
-                        widget.uthUser.ass27Generalpractitioner = new DateTime(1900);
+                        widget.uthUser.ass27Generalpractitioner =
+                            new DateTime(1900);
+                        formCorrect = true;
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Assessment28Page(widget.uthUser)));
+                      if (formCorrect) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment28Page(widget.uthUser)));
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Bitte treffen Sie eine Auswahl.")));
@@ -161,7 +175,7 @@ class _Assessment27PageState extends State<Assessment27Page> {
                       ),
                     ),
                     minimumSize:
-                    MaterialStateProperty.all(Size(width / 1.2, width / 8)),
+                        MaterialStateProperty.all(Size(width / 1.2, width / 8)),
                   ),
                 ),
               ),
@@ -172,4 +186,3 @@ class _Assessment27PageState extends State<Assessment27Page> {
     );
   }
 }
-

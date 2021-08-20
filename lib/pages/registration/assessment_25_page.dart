@@ -130,6 +130,7 @@ class _Assessment25PageState extends State<Assessment25Page> {
                 padding: const EdgeInsets.only(bottom: 40),
                 child: ElevatedButton(
                   onPressed: () {
+                    bool formCorrect = false;
                     if (lastIndex != null) {
                       if (lastIndex == 0 &&
                           yearController.text.isNotEmpty &&
@@ -142,15 +143,22 @@ class _Assessment25PageState extends State<Assessment25Page> {
                         widget.uthUser.ass25Bloodsample = new DateTime(
                             int.parse(yearController.text),
                             int.parse(monthController.text));
+                        formCorrect = true;
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Geben Sie einen Zeitpunkt an oder wählen Sie 'Weiß ich nicht'")));
                       }
                       if (lastIndex == 1) {
                         widget.uthUser.ass25Bloodsample = new DateTime(1900);
+                        formCorrect = true;
                       }
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  Assessment26Page(widget.uthUser)));
+                      if (formCorrect) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Assessment26Page(widget.uthUser)));
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text("Bitte treffen Sie eine Auswahl.")));
