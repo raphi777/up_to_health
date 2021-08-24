@@ -30,11 +30,11 @@ class Assessment03Page extends StatelessWidget {
     }
 
     DateTime birthday = new DateTime(year, month, day);
-    if (DateTime.now().difference(birthday).inDays > 4380) {
+    if (DateTime.now().difference(birthday).inDays > 6570) {
       return true;
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Sie müssen mindestens 12 Jahre alt sein.")));
+          SnackBar(content: Text("Sie müssen mindestens 18 Jahre alt sein.")));
       return false;
     }
   }
