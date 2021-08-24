@@ -33,7 +33,7 @@ class UthUser {
   bool ass29Aneurysmen;
   bool ass30Pregnant;
   String ass31Insurance;
-  List<int> dailyScore;
+  List<dynamic> dailyScore;
 
   UthUser({
     this.email,

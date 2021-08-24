@@ -129,10 +129,13 @@ class _CompassPageState extends State<CompassPage>
                 }
                 print('score: $score');
                 int iScore = score.toInt();
-                //List<int> dailyScores = await AddUser().getDailyScoresParam();
                 var dailyScores = widget.uthUser.dailyScore;
+                if (dailyScores == null ) {
+                  dailyScores = [];
+                }
                 dailyScores.add(iScore);
-                AddUser().updateSingleFirestoreParam([iScore], 'dailyScores');
+                print('score list: ' + dailyScores.length.toString());
+                AddUser().updateSingleFirestoreParam(dailyScores, 'dailyScore');
                 showDialog(
                   context: context,
                   builder: (BuildContext context) {

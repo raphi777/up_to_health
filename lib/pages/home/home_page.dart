@@ -113,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 bottomNavigationBar: BottomNavigationBar(
                   selectedItemColor: Colors.blue,
+                  unselectedItemColor: Colors.grey,
                   onTap: _onItemTapped,
                   currentIndex: _selectedIndex,
                   items: [
