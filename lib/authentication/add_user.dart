@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:up_to_health/data/daily_score.dart';
 import 'package:up_to_health/data/uth_user.dart';
 
 class AddUser {
@@ -24,5 +25,15 @@ class AddUser {
         .collection('users')
         .doc(currentUser.uid)
         .update({'$param' : data});
+  }
+
+  void setDailyScoreFirestoreParam(DailyScore dailyScore) {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(currentUser.uid)
+        .collection('dailyScores')
+        .doc(dailyScore.date.toString())
+        .set({'score' : dailyScore.score});
   }
 }
